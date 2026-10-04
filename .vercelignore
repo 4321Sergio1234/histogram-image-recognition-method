@@ -1,0 +1,12 @@
+node_modules
+brain-js/data
+brain-js/artifacts/*
+!brain-js/artifacts/curated-v2/
+brain-js/artifacts/curated-v2/*
+!brain-js/artifacts/curated-v2/model.json
+!brain-js/artifacts/curated-v2/selected-model.json
+!brain-js/artifacts/curated-v2/manifest.json
+docs
+test-results
+playwright-report
+.git
