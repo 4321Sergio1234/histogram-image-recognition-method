@@ -33,6 +33,13 @@ Keep imports within layer boundaries and use each slice's public API. Keep the s
 independent of visual components. Meaningful user operations should update the session log and
 actual progress or timing; avoid elapsed-time-driven progress percentages.
 
+Put slice implementations under `ui`, stateful behavior under `model`, and shared feature messages
+under `config/copy.ts`. Use shared controls instead of repeating button, metadata-list or dialog
+markup. Static text belongs to a local named `COPY` constant, including `aria-label`, non-empty
+`alt`, titles and descriptions. Interpolated sentences use named formatters; validated model
+labels are rendered from metadata. The `horizon/ui-copy` rule runs as part of `pnpm lint`.
+See [component ownership and copy examples](architecture.md#5-components-and-slice-apis).
+
 ## 3. Update model assets
 
 ```bash

@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import globals from 'globals';
 import prettier from 'eslint-config-prettier';
+import uiCopyRule from './scripts/lint/ui-copy-rule.js';
 
 export default tseslint.config(
   {
@@ -18,6 +19,11 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   prettier,
+  {
+    files: ['react-web-app/src/**/*.tsx'],
+    plugins: { horizon: { rules: { 'ui-copy': uiCopyRule } } },
+    rules: { 'horizon/ui-copy': 'error' },
+  },
   {
     languageOptions: { globals: { ...globals.browser, ...globals.node, ...globals.worker } },
     rules: {

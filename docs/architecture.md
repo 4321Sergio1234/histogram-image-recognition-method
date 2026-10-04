@@ -62,6 +62,13 @@ The PWA precaches the app and model pair. Workbox revisions change when model by
 the model loader verifies SHA-256 before constructing the network. Photos stay in the browser;
 exports and the downloadable session log are created locally.
 
+UI slices expose public `index.ts` files and separate rendering, state and shared copy into
+`ui`, `model` and `config` segments. Reusable controls live in `shared/ui`, while image/scene/result
+presentation stays with its entity. The analysis dialog composes independent histogram, output,
+timing, reliability and metadata components. ESLint checks component copy constants alongside the
+FSD import check. See the [web architecture guide](../react-web-app/docs/architecture.md) for
+ownership, provider composition and examples.
+
 ## 5. Limits of the active dataset
 
 The cleaned test set measures the admitted canonical-palette and brightness domain. It has been
