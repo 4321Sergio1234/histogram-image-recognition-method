@@ -23,11 +23,11 @@ Vercel CLI in `package.json`. See [Vercel's GitHub Actions guide](https://vercel
 
 Add these repository secrets under **Settings → Secrets and variables → Actions**:
 
-| Secret              | Value                                                       |
-| ------------------- | ----------------------------------------------------------- |
-| `VERCEL_TOKEN`      | A Vercel access token with access to the deployment project |
-| `VERCEL_ORG_ID`     | The `orgId` in the local `.vercel/project.json`             |
-| `VERCEL_PROJECT_ID` | The `projectId` in the local `.vercel/project.json`         |
+| Secret              | Value                                                            |
+| ------------------- | ---------------------------------------------------------------- |
+| `VERCEL_TOKEN`      | A Vercel access token with access to the project and owning team |
+| `VERCEL_ORG_ID`     | The `orgId` in the local `.vercel/project.json`                  |
+| `VERCEL_PROJECT_ID` | The `projectId` in the local `.vercel/project.json`              |
 
 To link the project and find its IDs locally:
 
@@ -44,6 +44,23 @@ project settings as well. `.vercel/` and `.env*` are ignored and must not be com
 The deployment job fails with the missing secret's name if any value is absent. Production
 deployment cannot run until all three are configured. No token belongs in YAML, source code,
 documentation or a checked-in environment file.
+
+The current target is **horizon-scene-recognition**, owned by **4321sergio1234s-projects**:
+
+| Setting             | Verified value                     |
+| ------------------- | ---------------------------------- |
+| `VERCEL_ORG_ID`     | `team_OKeZIcwUBPGBqTAFOqSB1ySf`    |
+| `VERCEL_PROJECT_ID` | `prj_KhjJIfQrugInwDbJ9KODCDtSYALN` |
+
+These are project identifiers, not credentials. A token scoped to another team cannot deploy this
+project even when both IDs are correct. Create the deployment token with access to the owning team
+and store only the token value in `VERCEL_TOKEN`.
+
+Before pulling settings, CI checks team and project access directly using the same token. It reports
+invalid credentials, denied access or an unavailable project separately, without printing secrets.
+If `vercel pull` reports **Could not retrieve Project Settings**, check token permissions and both
+IDs first. The runner already starts with no committed `.vercel` directory; removing a local cache
+does not grant access to a different team.
 
 ## 3. Model assets and payload
 
