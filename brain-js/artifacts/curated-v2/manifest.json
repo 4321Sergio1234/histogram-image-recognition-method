@@ -1,0 +1,275 @@
+{
+  "version": "6.1.0",
+  "createdAt": "2026-10-04T20:46:21.385Z",
+  "task": "natural-scene-classification",
+  "algorithm": "zawyalow-brightness-histogram-v1",
+  "preprocessingVersion": "luma-round-sqrtmax15-msb-v2",
+  "featureLength": 1024,
+  "datasets": [
+    {
+      "id": "geoscene",
+      "name": "GeoSceneNet16K (local collection)",
+      "url": "https://huggingface.co/datasets/prithivMLmods/Multilabel-GeoSceneNet-16K",
+      "selectedClasses": [
+        "desert",
+        "forest area",
+        "sea or ocean"
+      ],
+      "ignoredClasses": [
+        "buildings and structures",
+        "hill or mountain",
+        "ice glacier",
+        "street view"
+      ]
+    },
+    {
+      "id": "intel",
+      "name": "Intel Image Classification",
+      "url": "https://www.kaggle.com/datasets/puneet6060/intel-image-classification/data",
+      "selectedClasses": [
+        "forest",
+        "sea"
+      ],
+      "ignoredClasses": [
+        "buildings",
+        "glacier",
+        "mountain",
+        "street"
+      ]
+    },
+    {
+      "id": "landscape",
+      "name": "Landscape Recognition Image Dataset (12k)",
+      "url": "https://www.kaggle.com/datasets/utkarshsaxenadn/landscape-recognition-image-dataset-12k-images",
+      "selectedClasses": [
+        "coast",
+        "desert",
+        "forest"
+      ],
+      "ignoredClasses": [
+        "glacier",
+        "mountain"
+      ]
+    }
+  ],
+  "datasetFingerprint": "559f4e1250515b121bc72e452ca0fd254274b4be9ff0d51384ba60c69df51151",
+  "classes": [
+    {
+      "id": "sea",
+      "displayName": "Sea",
+      "source": "intel",
+      "datasetLabel": "sea"
+    },
+    {
+      "id": "forest",
+      "displayName": "Forest",
+      "source": "intel",
+      "datasetLabel": "forest"
+    },
+    {
+      "id": "desert",
+      "displayName": "Desert",
+      "source": "landscape",
+      "datasetLabel": "desert"
+    }
+  ],
+  "split": {
+    "strategy": "Preserved source-photo group holdouts; previously unassigned groups70/15/15; identical HSV palette and training-only sqrt(H/N) nearest centroid gate in all splits; all selected training originals",
+    "seed": 20261004,
+    "validationPercent": 15,
+    "trainSource": "brain-js/data/scenes-curated-v2/train (exact subset in run)",
+    "validationSource": "brain-js/data/scenes-curated-v2/validation",
+    "testSource": "brain-js/data/scenes-curated-v2/test"
+  },
+  "sampleCounts": {
+    "train": 2280,
+    "validation": 879,
+    "test": 1086
+  },
+  "initializationSeed": 20261004,
+  "network": {
+    "architecture": "1024 → 16 → 3",
+    "hiddenLayers": [
+      16
+    ],
+    "activation": "sigmoid",
+    "iterations": 56,
+    "learningRate": 0.1,
+    "momentum": 0.1
+  },
+  "trainMetrics": {
+    "total": 2280,
+    "accuracy": 0.9982456140350877,
+    "macroF1": 0.9986563168419734,
+    "confusionMatrix": [
+      [
+        765,
+        0,
+        0
+      ],
+      [
+        4,
+        1403,
+        0
+      ],
+      [
+        0,
+        0,
+        108
+      ]
+    ],
+    "perClass": [
+      {
+        "id": "sea",
+        "count": 765,
+        "precision": 0.9947984395318595,
+        "recall": 1,
+        "f1": 0.9973924380704041
+      },
+      {
+        "id": "forest",
+        "count": 1407,
+        "precision": 1,
+        "recall": 0.9971570717839374,
+        "f1": 0.9985765124555159
+      },
+      {
+        "id": "desert",
+        "count": 108,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1
+      }
+    ]
+  },
+  "validationMetrics": {
+    "total": 879,
+    "accuracy": 0.9453924914675768,
+    "macroF1": 0.9078466898600066,
+    "confusionMatrix": [
+      [
+        293,
+        10,
+        0
+      ],
+      [
+        6,
+        467,
+        0
+      ],
+      [
+        32,
+        0,
+        71
+      ]
+    ],
+    "perClass": [
+      {
+        "id": "sea",
+        "count": 303,
+        "precision": 0.8851963746223565,
+        "recall": 0.966996699669967,
+        "f1": 0.9242902208201893
+      },
+      {
+        "id": "forest",
+        "count": 473,
+        "precision": 0.9790356394129979,
+        "recall": 0.9873150105708245,
+        "f1": 0.9831578947368421
+      },
+      {
+        "id": "desert",
+        "count": 103,
+        "precision": 1,
+        "recall": 0.6893203883495146,
+        "f1": 0.8160919540229885
+      }
+    ]
+  },
+  "testMetrics": {
+    "total": 1086,
+    "accuracy": 0.9677716390423573,
+    "macroF1": 0.9263351107876958,
+    "confusionMatrix": [
+      [
+        346,
+        4,
+        0
+      ],
+      [
+        7,
+        644,
+        0
+      ],
+      [
+        24,
+        0,
+        61
+      ]
+    ],
+    "perClass": [
+      {
+        "id": "sea",
+        "count": 350,
+        "precision": 0.9177718832891246,
+        "recall": 0.9885714285714285,
+        "f1": 0.951856946354883
+      },
+      {
+        "id": "forest",
+        "count": 651,
+        "precision": 0.9938271604938271,
+        "recall": 0.989247311827957,
+        "f1": 0.99153194765204
+      },
+      {
+        "id": "desert",
+        "count": 85,
+        "precision": 1,
+        "recall": 0.7176470588235294,
+        "f1": 0.8356164383561643
+      }
+    ]
+  },
+  "uncertainty": {
+    "minScore": 0.65,
+    "minMargin": 0.15
+  },
+  "modelSha256": "5e4dbd351c39ba21ef3d0afc7d86940373a22ece361b4c421d7ce72275cd5235",
+  "brainVersion": "2.0.0-beta.24",
+  "domain": {
+    "id": "curated-histogram-v2",
+    "description": "Canonical blue/cyan sea, green forest and warm sandy desert with distinct global brightness distributions. Lighting, unusual palettes and overlapping histograms can cause wrong labels.",
+    "palettes": [
+      {
+        "id": "sea",
+        "description": "Blue/cyan sea and coast"
+      },
+      {
+        "id": "forest",
+        "description": "Green forest"
+      },
+      {
+        "id": "desert",
+        "description": "Warm sandy desert"
+      }
+    ],
+    "paletteTestCoverage": 0.5166508087535681,
+    "testPopulationCount": 2102,
+    "cleanDatasetFingerprint": "559f4e1250515b121bc72e452ca0fd254274b4be9ff0d51384ba60c69df51151",
+    "sourceCaveat": "Conditional cleaned test; identical train/validation/test gate with centroids fit on training only. Coverage denominator: deduplicated source candidates after preserved manual exclusions, before numeric palette/brightness screening. Source photos have been used/inspected in earlier experiments. Automatic palette review for additional sources; no runtime out-of-domain detector. Source confounding and imbalance remain."
+  },
+  "provenance": {
+    "decoderPolicy": "sharp-opaque-chromium-profile-alpha-v2",
+    "groupingPolicy": "D4-pHash-Hamming4-MAE10-correlation985; one image/source-photo group",
+    "filterRulesSha256": "d53f5d1c58a83d915ee30834d975106ebf9faf681cbdf11ccf1ced701a2fe968",
+    "holdoutAnchorSha256": "e998ba8a54a4a1d16dbe4b17e20f2a3438a587ff35c8bf52b659deaadcf2a4c2",
+    "trainingDurationMs": 19151.21912499999,
+    "trainingError": 0.00009459317926750433,
+    "alphaBackground": "white",
+    "nativeResolution": true,
+    "selectionRule": "Checkpoint: highest validation macro-F1, accuracy then earlier epoch. Candidate: fewest parameters within 0.01 macro-F1 of the best, then macro-F1 and accuracy. All admitted selected training files used. Test never inferred during selection.",
+    "uncertaintyMeaning": "Uncalibrated heuristic fixed before training: uncertain when the top score is below minScore or leads the runner-up by less than minMargin. Does not detect a different palette or unsupported scene."
+  }
+}

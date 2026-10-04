@@ -1,0 +1,27 @@
+{
+  "command": "train",
+  "data": "/Users/admin/Documents/projects/node/histogram-image-recognition-method/repo/brain-js/data/scenes-curated-v2",
+  "docs": "/Users/admin/Documents/projects/node/histogram-image-recognition-method/docs",
+  "out": "/Users/admin/Documents/projects/node/histogram-image-recognition-method/repo/brain-js/artifacts/curated-v2",
+  "folders": [],
+  "epochs": 60,
+  "rates": [
+    0.03,
+    0.1,
+    0.3
+  ],
+  "hidden": [
+    0,
+    16,
+    32
+  ],
+  "normalization": "sqrt-max15",
+  "seed": 20261004,
+  "sizes": [
+    300,
+    600,
+    "all"
+  ],
+  "version": "6.1.0",
+  "quiet": true
+}

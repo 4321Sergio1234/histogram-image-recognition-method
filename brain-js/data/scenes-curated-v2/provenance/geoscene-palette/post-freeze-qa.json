@@ -1,0 +1,11 @@
+{
+  "scope": "Post-freeze visual QA; no ledger, split or weights modified",
+  "missedArtifacts": [
+    {
+      "path": "geoscene/Desert/1 (1834).jpeg",
+      "partition": "validation",
+      "finding": "Small lower-right photographer watermark visible in enlarged diagnostic sheet; missed in initial thumbnail review."
+    }
+  ],
+  "consequence": "Manual exhaustive coverage does not imply perfect artifact detection. Record for a future separately frozen dataset revision; current metrics remain unchanged."
+}

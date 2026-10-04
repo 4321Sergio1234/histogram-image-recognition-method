@@ -1,0 +1,18 @@
+{
+  "measuredAt": "2026-10-04T20:47:48.605Z",
+  "browser": "Chromium 153.0.8010.12",
+  "modelVersion": "6.1.0",
+  "modelSha256": "5e4dbd351c39ba21ef3d0afc7d86940373a22ece361b4c421d7ce72275cd5235",
+  "status": "active-production",
+  "scope": "Every copied curated validation image; same histogram eligibility as train/test; no test inference.",
+  "images": 879,
+  "identicalFeatureVectors": 879,
+  "meanDifferingBits": 0,
+  "maxDifferingBits": 0,
+  "sameTopPrediction": 879,
+  "maxAbsoluteScoreDifference": 0,
+  "note": "Node and browser independently decode the copied validation images and use the shared histogram/encoding functions; no source feature cache is read. Opaque unprofiled images use Sharp in Node and createImageBitmap/canvas in Chromium; profiled/alpha images use the pinned Chromium canvas decoder in Node. Any recorded difference is a regression, not an accepted discrepancy.",
+  "datasetFingerprint": "559f4e1250515b121bc72e452ca0fd254274b4be9ff0d51384ba60c69df51151",
+  "inputRoot": "/Users/admin/Documents/projects/node/histogram-image-recognition-method/repo/brain-js/data/scenes-curated-v2",
+  "examples": []
+}

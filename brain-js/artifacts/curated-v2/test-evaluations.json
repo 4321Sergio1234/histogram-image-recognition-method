@@ -1,0 +1,75 @@
+[
+  {
+    "evaluatedAt": "2026-10-04T20:46:21.387Z",
+    "modelSha256": "5e4dbd351c39ba21ef3d0afc7d86940373a22ece361b4c421d7ce72275cd5235",
+    "datasetFingerprint": "559f4e1250515b121bc72e452ca0fd254274b4be9ff0d51384ba60c69df51151",
+    "sampleCounts": {
+      "train": 2280,
+      "validation": 879,
+      "test": 1086
+    },
+    "test": {
+      "total": 1086,
+      "accuracy": 0.9677716390423573,
+      "macroF1": 0.9263351107876958,
+      "confusionMatrix": [
+        [
+          346,
+          4,
+          0
+        ],
+        [
+          7,
+          644,
+          0
+        ],
+        [
+          24,
+          0,
+          61
+        ]
+      ],
+      "perClass": [
+        {
+          "id": "sea",
+          "count": 350,
+          "precision": 0.9177718832891246,
+          "recall": 0.9885714285714285,
+          "f1": 0.951856946354883
+        },
+        {
+          "id": "forest",
+          "count": 651,
+          "precision": 0.9938271604938271,
+          "recall": 0.989247311827957,
+          "f1": 0.99153194765204
+        },
+        {
+          "id": "desert",
+          "count": 85,
+          "precision": 1,
+          "recall": 0.7176470588235294,
+          "f1": 0.8356164383561643
+        }
+      ]
+    },
+    "counts": {
+      "train": {
+        "sea": 765,
+        "forest": 1407,
+        "desert": 108
+      },
+      "validation": {
+        "sea": 303,
+        "forest": 473,
+        "desert": 103
+      },
+      "test": {
+        "sea": 350,
+        "forest": 651,
+        "desert": 85
+      }
+    },
+    "coverage": 0.5166508087535681
+  }
+]
