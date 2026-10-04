@@ -3,6 +3,22 @@ import { decodeImage, type SelectedImage } from './image-input';
 
 export type ExportFormat = 'png' | 'jpeg' | 'bmp';
 
+const COPY = {
+  brand: 'HORIZON',
+  description: 'Natural scene recognition, on your device.',
+  palette: 'Palette scope: blue/cyan sea, green forest, warm sandy desert.',
+  limitation: 'Lighting and palette changes can lead to a wrong result.',
+  unsupported: 'Your browser could not create the export. Try another browser.',
+  failed: 'The image could not be exported. Please retry.',
+  prediction: (uncertain: boolean, score: number) =>
+    `${uncertain ? 'Uncertain result' : 'Predicted scene'} · Model confidence ${(score * 100).toFixed(1)}%`,
+  scope: (scenes: string) =>
+    `Recognizes only ${scenes} scenes. Confidence is an uncalibrated model score.`,
+  model: (version: string) => `Processed locally · Model ${version}`,
+  unsupportedFormat: (format: string) =>
+    `This browser does not support ${format.toUpperCase()} export.`,
+} as const;
+
 interface ExportResult {
   prediction: { label: { displayName: string }; score: number };
   uncertain: boolean;
@@ -38,7 +54,7 @@ export async function exportAnalysis(
   canvas.height = 1320;
   const context = canvas.getContext('2d');
   if (!context) {
-    throw new Error('Your browser could not create the export. Try another browser.');
+    throw new Error(COPY.unsupported);
   }
   const decoded = await decodeImage(image.file);
   try {
@@ -46,10 +62,10 @@ export async function exportAnalysis(
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = '#254d38';
     context.font = '600 34px system-ui, sans-serif';
-    context.fillText('HORIZON', 64, 82);
+    context.fillText(COPY.brand, 64, 82);
     context.font = '22px system-ui, sans-serif';
     context.fillStyle = '#636c63';
-    context.fillText('Natural scene recognition, on your device.', 64, 122);
+    context.fillText(COPY.description, 64, 122);
     const scale = Math.min(1072 / decoded.width, 730 / decoded.height);
     const width = decoded.width * scale;
     const height = decoded.height * scale;
@@ -67,32 +83,20 @@ export async function exportAnalysis(
     context.fillText(result.prediction.label.displayName, 64, 982, 1072);
     context.font = '28px system-ui, sans-serif';
     context.fillStyle = '#48614b';
-    context.fillText(
-      `${result.uncertain ? 'Uncertain result' : 'Predicted scene'} · Model confidence ${(result.prediction.score * 100).toFixed(1)}%`,
-      64,
-      1036,
-      1072,
-    );
+    context.fillText(COPY.prediction(result.uncertain, result.prediction.score), 64, 1036, 1072);
     context.fillStyle = '#687168';
     context.font = '23px system-ui, sans-serif';
     context.fillText(
-      `Recognizes only ${sceneList(result.model.classes.map((label) => label.displayName))} scenes. Confidence is an uncalibrated model score.`,
+      COPY.scope(sceneList(result.model.classes.map((label) => label.displayName))),
       64,
       1100,
       1072,
     );
     context.font = '20px system-ui, sans-serif';
-    context.fillText(
-      result.model.domain
-        ? 'Palette scope: blue/cyan sea, green forest, warm sandy desert.'
-        : 'Lighting and palette changes can lead to a wrong result.',
-      64,
-      1130,
-      1072,
-    );
+    context.fillText(result.model.domain ? COPY.palette : COPY.limitation, 64, 1130, 1072);
     context.fillRect(64, 1153, 1072, 1);
     context.font = '20px system-ui, sans-serif';
-    context.fillText(`Processed locally · Model ${result.model.version}`, 64, 1192, 1072);
+    context.fillText(COPY.model(result.model.version), 64, 1192, 1072);
     context.fillText(new Date(result.completedAt).toLocaleString(), 64, 1232);
     const blob =
       format === 'bmp'
@@ -108,16 +112,13 @@ export async function exportAnalysis(
           )
         : await new Promise<Blob>((resolve, reject) =>
             canvas.toBlob(
-              (value) =>
-                value
-                  ? resolve(value)
-                  : reject(new Error('The image could not be exported. Please retry.')),
+              (value) => (value ? resolve(value) : reject(new Error(COPY.failed))),
               `image/${format}`,
               0.92,
             ),
           );
     if (blob.type !== `image/${format}`) {
-      throw new Error(`This browser does not support ${format.toUpperCase()} export.`);
+      throw new Error(COPY.unsupportedFormat(format));
     }
     return { blob, filename: analysisFilename(result.prediction.label.displayName, format) };
   } finally {

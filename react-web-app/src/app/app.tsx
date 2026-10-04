@@ -1,12 +1,9 @@
 import { RecognitionPage } from '@/pages/recognition';
-import { ToastProvider } from '@/shared/ui';
-import { RecognitionProvider } from './providers/recognition-provider';
+import { AppProviders } from './providers/app-providers';
 export function App() {
   return (
-    <RecognitionProvider>
-      <ToastProvider>
-        <RecognitionPage />
-      </ToastProvider>
-    </RecognitionProvider>
+    <AppProviders>
+      <RecognitionPage />
+    </AppProviders>
   );
 }

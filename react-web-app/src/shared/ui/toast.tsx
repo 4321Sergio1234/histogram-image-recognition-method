@@ -8,7 +8,9 @@ import {
   type ReactNode,
 } from 'react';
 import { Check, X } from 'lucide-react';
-import { SessionLogProvider } from './session-log';
+import { IconButton } from './button';
+
+const COPY = { dismiss: 'Dismiss notification' } as const;
 const ToastContext = createContext<(message: string) => void>(() => undefined);
 export const useToast = () => useContext(ToastContext);
 export function ToastProvider({ children }: { children: ReactNode }) {
@@ -21,25 +23,19 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   }, []);
   useEffect(() => () => clearTimeout(timer.current), []);
   return (
-    <SessionLogProvider>
-      <ToastContext value={notify}>
-        {children}
-        <div className={`toast ${message ? 'is-visible' : ''}`} role="status" aria-live="polite">
-          {message && (
-            <>
-              <Check size={18} />
-              <span>{message}</span>
-              <button
-                className="icon-button"
-                aria-label="Dismiss notification"
-                onClick={() => setMessage('')}
-              >
-                <X size={17} />
-              </button>
-            </>
-          )}
-        </div>
-      </ToastContext>
-    </SessionLogProvider>
+    <ToastContext value={notify}>
+      {children}
+      <div className={`toast ${message ? 'is-visible' : ''}`} role="status" aria-live="polite">
+        {message && (
+          <>
+            <Check size={18} />
+            <span>{message}</span>
+            <IconButton label={COPY.dismiss} onClick={() => setMessage('')}>
+              <X size={17} />
+            </IconButton>
+          </>
+        )}
+      </div>
+    </ToastContext>
   );
 }

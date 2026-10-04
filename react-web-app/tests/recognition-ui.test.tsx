@@ -14,10 +14,14 @@ import { RecognitionPage } from '../src/pages/recognition';
 import { ToastProvider } from '../src/shared/ui';
 import { prepareImage } from '../src/entities/image-analysis';
 import { downloadBlob, exportAnalysis } from '../src/shared/lib/export-analysis';
-import { formatBytes } from '../src/features/view-image-info';
+import { formatBytes } from '../src/shared/lib/format';
+import { SessionLogProvider } from '../src/shared/lib/session-log';
 import { manifestFixture, sceneClasses } from './model-fixture';
 
-vi.mock('../src/entities/image-analysis', () => ({ prepareImage: vi.fn() }));
+vi.mock('../src/entities/image-analysis', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('../src/entities/image-analysis')>()),
+  prepareImage: vi.fn(),
+}));
 vi.mock('../src/shared/lib/export-analysis', () => ({
   exportAnalysis: vi.fn(),
   downloadBlob: vi.fn(),
@@ -70,9 +74,11 @@ let service: SceneRecognitionService;
 function start() {
   return render(
     <RecognitionServiceContext value={service}>
-      <ToastProvider>
-        <RecognitionPage />
-      </ToastProvider>
+      <SessionLogProvider>
+        <ToastProvider>
+          <RecognitionPage />
+        </ToastProvider>
+      </SessionLogProvider>
     </RecognitionServiceContext>,
   );
 }

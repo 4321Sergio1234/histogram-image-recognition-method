@@ -1,1 +1,1 @@
-export { useRecognition } from './use-recognition';
+export { useRecognition } from './model/use-recognition';

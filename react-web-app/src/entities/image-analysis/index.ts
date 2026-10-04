@@ -6,3 +6,4 @@ export {
   MAX_IMAGE_PIXELS,
 } from '../../shared/lib/image-input';
 export type { SelectedImage, ImageMetadata, ImageSource } from '../../shared/lib/image-input';
+export { BrightnessHistogram } from './ui/brightness-histogram';

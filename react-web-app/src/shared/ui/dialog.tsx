@@ -1,5 +1,8 @@
 import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { X } from 'lucide-react';
+import { IconButton } from './button';
+
+const COPY = { close: 'Close dialog' } as const;
 
 export function Dialog({
   open,
@@ -60,9 +63,9 @@ export function Dialog({
             <h2 id={titleId}>{title}</h2>
             {description && <p id={descriptionId}>{description}</p>}
           </div>
-          <button type="button" className="icon-button" onClick={onClose} aria-label="Close dialog">
+          <IconButton onClick={onClose} label={COPY.close}>
             <X size={20} />
-          </button>
+          </IconButton>
         </div>
         {open && children}
       </div>
