@@ -1,0 +1,45 @@
+{
+  "name": "@horizon/brain",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./core": "./src/core/index.ts",
+    "./model": "./src/model/network.ts",
+    "./image": "./src/image/decode.ts"
+  },
+  "scripts": {
+    "audit:dataset": "tsx src/cli/audit.ts",
+    "diagnose:features": "tsx src/cli/entry.ts inspect",
+    "train": "tsx src/cli/entry.ts train",
+    "evaluate": "tsx src/cli/entry.ts evaluate",
+    "review:model": "tsx src/cli/entry.ts review",
+    "sync:model": "tsx src/cli/entry.ts sync",
+    "test": "vitest run tests",
+    "typecheck": "tsc -p tsconfig.json",
+    "prepare:dataset": "tsx src/cli/entry.ts prepare",
+    "train:palette": "tsx src/cli/train.ts",
+    "evaluate:palette": "tsx src/cli/evaluate.ts",
+    "prepare:dataset:palette": "tsx src/cli/prepare.ts",
+    "review:model:palette": "tsx src/cli/review.ts",
+    "diagnose:features:palette": "tsx src/cli/diagnose-palette.ts",
+    "sync:model:palette": "tsx src/cli/sync.ts",
+    "train:clean": "tsx src/cli/train-clean.ts",
+    "evaluate:clean": "tsx src/cli/evaluate-clean.ts",
+    "sync:model:clean": "tsx src/cli/sync-clean.ts",
+    "prepare:dataset:clean": "tsx src/cli/prepare-clean.ts",
+    "review:model:clean": "tsx src/cli/review-clean.ts",
+    "diagnose:features:clean": "tsx src/cli/diagnose-clean.ts"
+  },
+  "dependencies": {
+    "brain.js": "2.0.0-beta.24",
+    "sharp": "0.35.4"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "tsx": "4.23.15",
+    "vitest": "5.0.2",
+    "@types/node": "26.6.3",
+    "@playwright/test": "1.63.0"
+  }
+}

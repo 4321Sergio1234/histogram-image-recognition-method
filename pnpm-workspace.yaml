@@ -1,0 +1,8 @@
+packages:
+  - brain-js
+  - react-web-app
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+ignoredBuiltDependencies:
+  - gl

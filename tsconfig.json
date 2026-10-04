@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "scripts/**/*.ts",
+    "e2e/**/*.ts",
+    "*.config.ts",
+    "react-web-app/src/shared/api/brain-browser.d.ts"
+  ],
+  "compilerOptions": {
+    "types": ["node", "vite/client"],
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": ["./react-web-app/src/*"]
+    }
+  }
+}

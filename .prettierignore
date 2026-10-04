@@ -1,0 +1,11 @@
+node_modules/
+**/dist/
+coverage/
+test-results/
+playwright-report/
+.vercel/
+pnpm-lock.yaml
+brain-js/artifacts/
+brain-js/data/
+react-web-app/public/models/
+react-web-app/public/fonts/

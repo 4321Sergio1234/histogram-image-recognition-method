@@ -1,0 +1,7 @@
+[
+  {
+    "path": "landscape/Landscape Classification/Landscape Classification/Training Data/Desert/Desert-Train (1664).jpeg",
+    "sha256": "3c39f8c16578e0afe8bda0f71852490ecff6f6099732713cbd952099b102da7a",
+    "reason": "Manual visual review: snow-covered woodland and mountain landscape; incorrectly labeled Desert. Whole duplicate group excluded from development; original file retained."
+  }
+]
