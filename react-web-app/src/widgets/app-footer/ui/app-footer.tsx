@@ -2,7 +2,7 @@ import { LockKeyhole, Sunrise } from 'lucide-react';
 
 const COPY = {
   privacy: 'Your photo stays yours. Always processed on your device.',
-  tagline: 'A wider view.',
+  tagline: 'A wider view',
 } as const;
 
 export function AppFooter() {

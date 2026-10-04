@@ -27,7 +27,7 @@ test('local recognition, information, details, all exports, reset and accessible
     }
   });
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Recognize a natural scene.');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Recognize a natural scene');
   await expect(page.locator('.catalog')).toContainText('3 scene types');
   const catalog = (await (
     await page.request.get('/models/scene-recognition/manifest.json')

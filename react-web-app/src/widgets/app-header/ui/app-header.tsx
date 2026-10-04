@@ -6,7 +6,6 @@ import { Button } from '@/shared/ui';
 const COPY = {
   home: 'Horizon home',
   brand: 'horizon',
-  dot: '.',
   offline: 'Offline',
   about: 'How it works',
 } as const;
@@ -21,7 +20,6 @@ export function AppHeader({ onAbout }: { onAbout: () => void }) {
             <Sunrise size={24} strokeWidth={1.6} />
           </span>
           {COPY.brand}
-          <span className="brand-dot">{COPY.dot}</span>
         </a>
         <div className="header-tools">
           {!online && (

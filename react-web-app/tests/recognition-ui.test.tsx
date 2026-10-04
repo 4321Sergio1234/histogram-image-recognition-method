@@ -122,7 +122,7 @@ describe('consumer scene recognition workflow', () => {
     start();
     await screen.findByText('Local model ready');
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      'Recognize a natural scene.',
+      'Recognize a natural scene',
     );
     expect(
       screen.getByText(/identify whether it shows a sea, forest or desert scene/),

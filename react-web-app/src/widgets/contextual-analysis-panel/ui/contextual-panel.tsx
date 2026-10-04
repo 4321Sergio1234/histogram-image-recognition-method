@@ -7,8 +7,8 @@ import { SceneCatalog } from './scene-catalog';
 const COPY = {
   label: 'Photo guidance',
   eyebrow: 'WHAT WORKS BEST',
-  title: 'The whole view.',
-  subtitle: 'Not the details.',
+  title: 'The whole view',
+  subtitle: 'Not the details',
   tips: 'Tips for a better photo',
 } as const;
 

@@ -7,7 +7,7 @@ const COPY = {
   loading: 'Preparing your local model…',
   ready: 'Local model ready',
   unavailable: 'Local model unavailable',
-  scope: (scenes: string) => `Recognizes ${scenes} scenes only.`,
+  scope: (scenes: string) => `Recognizes ${scenes} scenes only`,
 } as const;
 
 export function ModelError({ error, onRetry }: { error: string; onRetry: () => void }) {
@@ -46,10 +46,7 @@ export function ModelStatus({
             {COPY.loading}
           </>
         ) : ready ? (
-          <>
-            <span className="ready-dot" />
-            {COPY.ready}
-          </>
+          COPY.ready
         ) : (
           <>
             <AlertCircle size={13} />
