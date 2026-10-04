@@ -5,14 +5,17 @@
   "buildCommand": "pnpm build",
   "outputDirectory": "react-web-app/dist",
   "git": { "deploymentEnabled": false },
-  "headers": [
+  "routes": [
     {
-      "source": "/models/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+      "src": "^/models/(.*)$",
+      "headers": { "Cache-Control": "public, max-age=0, must-revalidate" },
+      "continue": true
     },
     {
-      "source": "/sw.js",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
-    }
+      "src": "^/sw\\.js$",
+      "headers": { "Cache-Control": "public, max-age=0, must-revalidate" },
+      "continue": true
+    },
+    { "handle": "filesystem" }
   ]
 }

@@ -24,6 +24,7 @@ run on Node. Native GPU install scripts are disabled; Brain.js uses its CPU/brow
 | -------------------------------------------- | ------------------------------------------------------------------------- |
 | `pnpm dev`                                   | Start the web development server                                          |
 | `pnpm build`                                 | Verify model assets, typecheck, build the PWA and verify the copied model |
+| `pnpm build:vercel`                          | Build the verified PWA and package static Build Output API v3 files       |
 | `pnpm preview --host 127.0.0.1 --port 4173`  | Serve the built PWA locally                                               |
 | `pnpm format`                                | Format supported source, config and documentation files                   |
 | `pnpm format:check`                          | Fail if those files need formatting                                       |

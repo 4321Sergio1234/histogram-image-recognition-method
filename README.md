@@ -68,7 +68,7 @@ The same palette and training-only brightness-centroid criterion applies in trai
 
 GitHub Actions checks pull requests and pushes to `main`. After **Quality checks** passes on a main push, the deployment job builds and verifies Vercel's static output, then deploys it with the pinned CLI. Native Vercel Git deployments are disabled to prevent duplicate releases before checks finish. Training never runs during deployment.
 
-Add `VERCEL_TOKEN`, `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID` as GitHub Actions secrets. Set branch protection to require **Quality checks** before merging. The [deployment guide](docs/deployment.md) explains project linking, secrets, model checks and rollback. Production deployment requires those secrets to be configured.
+Add `VERCEL_TOKEN`, `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID` as GitHub Actions secrets. A token scoped to the Horizon project is sufficient; CI builds the static payload without pulling team settings. Set branch protection to require **Quality checks** before merging. The [deployment guide](docs/deployment.md) explains project linking, secrets, model checks and rollback. Production deployment requires those secrets to be configured.
 
 ## Architecture and verification
 

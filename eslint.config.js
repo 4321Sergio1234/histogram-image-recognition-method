@@ -10,6 +10,7 @@ export default tseslint.config(
       '**/node_modules/**',
       '**/artifacts/**',
       '**/public/**',
+      '.vercel/**',
       'test-results/**',
       'playwright-report/**',
     ],

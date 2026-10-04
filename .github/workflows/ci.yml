@@ -74,12 +74,10 @@ jobs:
             fi
           done
       - run: pnpm install --frozen-lockfile
-      - name: Verify Vercel team and project access
+      - name: Verify Vercel project access
         run: pnpm exec tsx scripts/check-vercel-access.ts
-      - name: Pull production project settings
-        run: pnpm exec vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
-      - name: Build Vercel output
-        run: pnpm exec vercel build --prod --token="$VERCEL_TOKEN"
+      - name: Build verified Vercel output
+        run: pnpm build:vercel
       - name: Verify model in the deployment payload
         run: pnpm verify:model --dir .vercel/output/static
       - name: Deploy verified output

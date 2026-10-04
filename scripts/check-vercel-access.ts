@@ -34,23 +34,21 @@ async function access(path: string, resource: string): Promise<Record<string, un
       response.status === 401
         ? 'The token was rejected. Replace VERCEL_TOKEN with a valid, unexpired Vercel access token.'
         : response.status === 403
-          ? 'The CI token cannot access this project/team. Grant it access to the project owner team.'
+          ? 'The CI token cannot access this project. Check its project scope and the configured IDs.'
           : response.status === 404
-            ? 'The resource is not visible to this token. Check both project IDs and the token team scope.'
+            ? 'The project is not visible to this token. Check both IDs and the token project scope.'
             : 'Check Vercel service availability and retry.';
     throw new Error(`Vercel ${resource} access failed (HTTP ${response.status}). ${reason}`);
   }
   return response.json();
 }
 
-// Project settings retrieval also needs the owning team's metadata.
-const team = await access(`/v2/teams/${encodeURIComponent(teamId)}`, 'team');
 const project = await access(
   `/v9/projects/${encodeURIComponent(projectId)}?teamId=${encodeURIComponent(teamId)}`,
   'project',
 );
-if (team.id !== teamId || project.id !== projectId || project.accountId !== teamId) {
+if (project.id !== projectId || project.accountId !== teamId) {
   throw new Error('Vercel project and owner do not match the configured IDs');
 }
 
-console.log(`Vercel access verified for ${String(project.name)} in ${String(team.slug)}.`);
+console.log(`Vercel project access verified for ${String(project.name)}.`);
